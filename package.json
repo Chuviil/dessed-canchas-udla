@@ -1,6 +1,6 @@
 {
   "name": "canchas-auth-demo",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "jwt-decode": "^4.0.0",
+    "next": "14.2.30",
+    "next-auth": "^4.24.11",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.30"
+    "react-icons": "^5.5.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "postcss": "^8",
