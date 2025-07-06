@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Proyecto de Reservas de Canchas UDLA
 
-## Getting Started
+Este es un proyecto desarrollado con [Next.js](https://nextjs.org/), que utiliza autenticación con [NextAuth.js](https://next-auth.js.org/) y [Keycloak](https://www.keycloak.org/) implementando control de acceso basado en roles (RBAC).
 
-First, run the development server:
+## Descripción
+
+Esta aplicación permite a los usuarios de la UDLA reservar canchas deportivas de manera sencilla y segura. El sistema gestiona la autenticación y autorización de los usuarios mediante Keycloak y NextAuth, asegurando que solo los usuarios autorizados puedan acceder a las funcionalidades según su rol (administrador, usuario, etc).
+
+## Tecnologías principales
+
+- [Next.js](https://nextjs.org/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [Keycloak](https://www.keycloak.org/)
+- RBAC (Control de Acceso Basado en Roles)
+- Tailwind CSS
+
+## Primeros pasos
+
+Instala las dependencias:
+
+```bash
+npm install
+```
+
+Inicia el servidor de desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Configuración de autenticación
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Asegúrate de tener un servidor Keycloak configurado y los datos de conexión en las variables de entorno. Consulta la documentación interna para detalles de configuración.
 
-## Learn More
+## Estructura del proyecto
 
-To learn more about Next.js, take a look at the following resources:
+- `src/app/` - Páginas y rutas principales
+- `src/components/` - Componentes reutilizables
+- `src/constants.js` - Constantes globales
+- `src/lib/nextauth/` - Configuración de NextAuth y Keycloak
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Recursos útiles
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Documentación Next.js](https://nextjs.org/docs)
+- [Documentación NextAuth.js](https://next-auth.js.org/getting-started/introduction)
+- [Documentación Keycloak](https://www.keycloak.org/documentation)
 
-## Deploy on Vercel
+## Despliegue
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Puedes desplegar la aplicación fácilmente en [Vercel](https://vercel.com/) o en tu infraestructura preferida.
