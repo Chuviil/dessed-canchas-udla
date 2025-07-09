@@ -37,22 +37,24 @@ export async function GET() {
 
     // 1. Generate a random AES key and IV
     const aesKey = crypto.randomBytes(32); // AES-256
-    const iv = crypto.randomBytes(16); // 16 bytes for AES-CBC
+    const iv = crypto.randomBytes(12); // 12 bytes for AES-GCM recommended
 
-    // 2. Encrypt the reservations JSON string with AES
-    const cipher = crypto.createCipheriv('aes-256-cbc', aesKey, iv);
+    // 2. Encrypt the reservations JSON string with AES-GCM
+    const cipher = crypto.createCipheriv('aes-256-gcm', aesKey, iv);
     let encryptedData = cipher.update(JSON.stringify(reservations), 'utf8', 'base64');
     encryptedData += cipher.final('base64');
+    const authTag = cipher.getAuthTag();
 
     // 3. Encrypt the AES key with Azure Key Vault (RSA)
     const encryptResult = await cryptoClient.encrypt({ algorithm: 'RSA-OAEP', plaintext: aesKey });
     const encryptedAesKey = encryptResult.result.toString('base64');
 
-    // 4. Return encrypted data, encrypted AES key, and IV
+    // 4. Return encrypted data, encrypted AES key, IV, and auth tag
     return NextResponse.json({
       encryptedData,
       encryptedAesKey,
-      iv: iv.toString('base64')
+      iv: iv.toString('base64'),
+      authTag: authTag.toString('base64')
     }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
